@@ -16,15 +16,26 @@ public class CharactersCounter {
 
     }
 
-    private static void displayOutput(Scanner sc) {
+    private static String getValidString(Scanner sc) {
         System.out.print("What is the input string? ");
+        String str;
 
-        String str = sc.nextLine();
+        while ((str = sc.nextLine()).length() == 0) {
+            System.out.print("String can't be empty. Enter a valid word: ");
+        }
+
+        return str;
+    }
+
+    private static void displayOutput(String str) {
+        
+
+        
         int strLength = countCharacters(str);
         System.out.println(str + " has " + strLength + " characters.");
     }
 
     public static void main(String[] args) {
-        displayOutput(new Scanner(System.in));
+        displayOutput(getValidString(new Scanner(System.in)));
     }
 }
