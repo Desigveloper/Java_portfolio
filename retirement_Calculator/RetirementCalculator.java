@@ -27,15 +27,19 @@ public class RetirementCalculator {
         int currentYear = currentDate.getYear();
         int retirementYear = currentYear + yearsLeft;
 
-        System.out.format("You have %d left until you can retire.\n",  yearsLeft );
-        System.out.format("It's %d, so you can retire in %d.\n", currentYear, retirementYear);
+        if (calculateYearsLeft(currentYear, retirementYear) < 0) {
+            System.out.println("You are already retired");
+        } else {
+            System.out.format("You have %d left until you can retire.\n",  yearsLeft );
+            System.out.format("It's %d, so you can retire in %d.\n", currentYear, retirementYear);
+        }
     }
 
     public static void main(String[] args) {
         System.out.print("What is your current age? ");
         int currentAge = getValidInput(new Scanner(System.in));
 
-        System.out.print("At what age would you want to retire? ");
+        System.out.print("At what is the legal retirement age in your country? ");
         int expectedAge = getValidInput(new Scanner(System.in));
 
         int yearsLeft = calculateYearsLeft(currentAge, expectedAge);
