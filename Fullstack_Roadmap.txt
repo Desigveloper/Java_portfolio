@@ -1,8 +1,0 @@
-Phase 1: Core Fundamentals (3 Months)
-=====================================
-
-Basic Syntax and Control flow ✅
-Class, Objects and Methods ✅
-The OOP pillars: Abstraction, Encapsulation, Abstraction, Inheritance
-Core APIs: Collection Frameworks (List, Set, Map), Exceptions, I/O Streams
-Modern Java (8+), Lambda Expressions, Stream API, (Optional) Date/Time API
