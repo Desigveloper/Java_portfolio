@@ -1,5 +1,7 @@
 package com.desigveloper.resources;
 
+import com.desigveloper.dto.CustomerDTO;
+import com.desigveloper.model.Customer;
 import com.desigveloper.services.CustomerService;
 
 /**
@@ -11,7 +13,15 @@ import com.desigveloper.services.CustomerService;
 public class CustomerResource {
     private CustomerService customerService;
 
+    // Dependncy injection through construtor
     public CustomerResource(CustomerService customerService) {
         this.customerService = customerService;
+    }
+
+    public CustomerDTO findById(int customerId) {
+        Customer customer = customerService.findById(customerId);
+            
+        return CustomerDTO.toCustomerDTO(customer);
+        
     }
 }

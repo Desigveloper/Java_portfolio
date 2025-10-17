@@ -9,7 +9,7 @@ import java.time.LocalDate;
 */
 
 public class Customer {
-    private final String id;
+    private final int id;
     private final String name;
     private final LocalDate birthDate;
     private final String address;
@@ -17,52 +17,6 @@ public class Customer {
     private final double salary;
     private final String login;
     private final String passwordToken;
-
-    public static class Builder {
-        private String id;
-        private String name;
-        private LocalDate birthDate;
-        private String address;
-        private String email;
-        private double salary;
-        private String login;
-        private String passwordToken;
-
-        Builder(String id, String name, LocalDate birthDate) {
-            this.id = id;
-            this.name = name;
-            this.birthDate = birthDate;
-        }
-
-        Builder withAddress(String address) {
-            this.address = address;
-            return this;
-        }
-
-        Builder withEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
-        Builder withSalary(double salary) {
-            this.salary = salary;
-            return this;
-        }
-
-        Builder withLogin(String login) {
-            this.login = login;
-            return this;
-        }
-
-        Builder withPasswordToken(String passwordToken) {
-            this.passwordToken = passwordToken;
-            return this;
-        }
-
-        public Customer build() {
-            return new Customer(this);
-        }
-    }
 
     private Customer(Builder builder) {
         this.id = builder.id;
@@ -73,5 +27,75 @@ public class Customer {
         this.salary = builder.salary;
         this.login = builder.login;
         this.passwordToken = builder.passwordToken;
+    }
+
+    // Getters only - encapsulation (no direct field modification)
+    public int getId() { return this.id; }
+
+    public String getName() { return this.name; }
+
+    public LocalDate getBirthDate() { return this.birthDate; }
+
+    public String getAddress() { return this.address; }
+
+    public String getEmail() { return this.email; }
+
+    public double getSalary() { return this.salary; }
+    
+    public String getLogin() { return this.login; }
+
+    public String getPasswordToken() { return this.passwordToken; }
+
+    // Static builder method
+    public static Builder builder(int id, String name, LocalDate birthDate) {
+        return new Builder(id, name, birthDate);
+    }
+
+    
+    // Builder class
+    public static class Builder {
+        private int id;
+        private String name;
+        private LocalDate birthDate;
+        private String address;
+        private String email;
+        private double salary;
+        private String login;
+        private String passwordToken;
+
+        public Builder(int id, String name, LocalDate birthDate) {
+            this.id = id;
+            this.name = name;
+            this.birthDate = birthDate;
+        }
+        
+        public Builder withAddress(String address) {
+            this.address = address;
+            return this;
+        }
+        
+        public Builder withEmail(String email) {
+            this.email = email;
+            return this;
+        }
+        
+        public Builder withSalary(double salary) {
+            this.salary = salary;
+            return this;
+        }
+        
+        public Builder withLogin(String login) {
+            this.login = login;
+            return this;
+        }
+        
+        public Builder withPasswordToken(String passwordToken) {
+            this.passwordToken = passwordToken;
+            return this;
+        }
+        
+        public Customer build() {
+            return new Customer(this);
+        }
     }
 }
