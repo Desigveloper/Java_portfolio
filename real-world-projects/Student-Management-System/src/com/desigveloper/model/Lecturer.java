@@ -1,33 +1,22 @@
 package com.desigveloper.model;
 
-public class Lecturer {
-    private final String lecturerId;
-    private final String name;
-    private final String email;
+public class Lecturer extends Person{
     private final String department;
 
     private Lecturer(Builder builder) {
-        this.lecturerId = builder.lecturerId;
-        this.name = builder.name;
-        this.email = builder.email;
+        super(builder.lecturerId, builder.name, builder.email);
         this.department = builder.department;
     }
 
     // Getters
-    public String getlecturerId() {
-        return this.lecturerId;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
     public String getDepartment() {
         return this.department;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecturer{id= '%s' name='%s' email='%s' department='%s'}"
+                .formatted(getId(), getName(), getEmail(), department);
     }
 
     // Static builder class

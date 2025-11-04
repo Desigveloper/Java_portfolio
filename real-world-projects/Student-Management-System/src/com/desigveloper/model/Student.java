@@ -2,42 +2,43 @@ package com.desigveloper.model;
 
 import java.time.LocalDate;
 
-public class Student {
-    private final String studentId;
-    private final String name;
+public class Student extends Person {
+
     private final LocalDate birthDate;
-    private final String enrolledCourse;
+    private final String enrollmentStatus;
     private final String major;
+    private final String studentGPA;
 
     private Student(Builder builder) {
-        this.name = builder.name;
+        super(builder.studentId, builder.name, builder.email);
         this.birthDate = builder.birthDate;
-        this.studentId = builder.studentId;
         this.major = builder.major;
-        this.enrolledCourse = builder.enrolledCourse;
+        this.enrollmentStatus = builder.enrollmentStatus;
+        this.studentGPA = builder.studentGPA;
     } 
 
     //Getters only
-    public String getStudentId() {
-        return this.studentId;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
     public LocalDate getBirthDate() {
         return this.birthDate;
     }
 
-    public String getEnrolledCourse() {
-        return this.enrolledCourse;
+    public String getEnrollmentStatus() {
+        return this.enrollmentStatus;
     }
 
     public String getMajor() {
         return this.major;
     }
 
+    public String getGPA() {
+        return this.studentGPA;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{id= '%s' name='%s' email='%s' major='%s', DOB='%s' enrollment status='%s' GPA='%s'"
+                .formatted(getId(), getName(), getEmail(), major, birthDate, enrollmentStatus, studentGPA);
+    }
 
     // Builder class
     public static class Builder {
@@ -45,7 +46,9 @@ public class Student {
         private  String name;
         private LocalDate birthDate;
         private String major;
-        private String enrolledCourse;
+        private String enrollmentStatus;
+        private String studentGPA;
+        private String email;
 
         public Builder(String studentId, String name, LocalDate birthDate) {
             this.name = name;
@@ -58,8 +61,18 @@ public class Student {
             return this;
         }
 
-        Builder withEnrolledCourse(String enrolledCourse) {
-            this.enrolledCourse = enrolledCourse;
+        Builder withEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        Builder withEnrolledCourse(String enrollmentStatus) {
+            this.enrollmentStatus = enrollmentStatus;
+            return this;
+        }
+
+        Builder withStudentGPA(String studentGPA) {
+            this.studentGPA = studentGPA;
             return this;
         }
 
@@ -69,8 +82,20 @@ public class Student {
         
     }
 
-    public void enrol(Course course) {
+    public void enroll(Course course) {
         
+    }
+
+    public void updateProfile() {
+        
+    }
+
+    public void viewGrades() {
+
+    }
+
+    public double calculateGPA() {
+        return 0;
     }
 
     public void dropCourse(Course course) {
