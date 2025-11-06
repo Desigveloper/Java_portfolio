@@ -8,7 +8,8 @@ import java.util.Optional;
 public interface EnrollmentDAO extends BaseDAO<Enrollment>{
     // Additional method related to enrollment
     List<Enrollment> findBySemester(int semester);
-    List<Enrollment> findStudentId(String studentId);
-    List<Enrollment> findByLecturerId(String lecturerId);
+    List<Enrollment> findByStudentId(String studentId);
+    List<Enrollment> findByCourseId(String lecturerId);
     Optional<Enrollment> findByStudentAndCourse(String studentId, String courseId);
+
 }

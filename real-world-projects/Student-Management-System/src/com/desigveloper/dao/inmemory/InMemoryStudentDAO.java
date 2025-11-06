@@ -1,6 +1,6 @@
-package com.desigveloper.dao;
+package com.desigveloper.dao.inmemory;
 
-import com.desigveloper.model.Lecturer;
+import com.desigveloper.dao.StudentDAO;
 import com.desigveloper.model.Student;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class InMemoryStudentDAO implements StudentDAO {
     }
 
     @Override
-    public void save(Student student) {
+    public void create(Student student) {
         students.add(student);
     }
 
@@ -33,7 +33,7 @@ public class InMemoryStudentDAO implements StudentDAO {
         // In real-application, we would update existing student in database
         // For in-memory, we would delete old student and save the update one
         delete(student);
-        save(student);
+        create(student);
     }
 
     @Override

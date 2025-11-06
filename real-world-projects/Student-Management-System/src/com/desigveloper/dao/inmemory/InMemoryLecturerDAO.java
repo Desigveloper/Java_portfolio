@@ -1,5 +1,6 @@
-package com.desigveloper.dao;
+package com.desigveloper.dao.inmemory;
 
+import com.desigveloper.dao.LecturerDAO;
 import com.desigveloper.model.Lecturer;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class InMemoryLecturerDAO implements LecturerDAO {
     }
 
     @Override
-    public void save(Lecturer lecturer) {
+    public void create(Lecturer lecturer) {
         lecturers.add(lecturer);
     }
 
@@ -32,7 +33,7 @@ public class InMemoryLecturerDAO implements LecturerDAO {
         // In real-application, we would update existing lecturer in database
         // For in-memory, we would delete old lecturer and save the update one
         delete(lecturer);
-        save(lecturer);
+        create(lecturer);
     }
 
     @Override

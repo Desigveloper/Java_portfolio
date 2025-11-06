@@ -7,7 +7,7 @@ public class Enrollment {
     private final String studentId;
     private final String courseId;
     private final String grade;
-    private final int semester;
+    private final Integer semester;
     private final String status;
     private final LocalDate date;
 
@@ -30,7 +30,7 @@ public class Enrollment {
         return this.grade;
     }
 
-    public int getSemester() {
+    public Integer getSemester() {
         return this.semester;
     }
 
@@ -62,7 +62,7 @@ public class Enrollment {
         private String enrollmentId;
         private String studentId;
         private String courseId;
-        private int semester;
+        private Integer semester;
         private String grade;
         private String status;
         private LocalDate date;

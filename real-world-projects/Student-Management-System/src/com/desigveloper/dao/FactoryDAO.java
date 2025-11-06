@@ -1,4 +1,4 @@
 package com.desigveloper.dao;
 
-public class InMemoryCourseDAO {
+public class FactoryDAO {
 }
