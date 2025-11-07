@@ -40,6 +40,11 @@ public class Student extends Person {
                 .formatted(getId(), getName(), getEmail(), major, birthDate, enrollmentStatus, studentGPA);
     }
 
+    // static builder method
+    public static Builder builder(String id, String name, LocalDate birthDate) {
+        return new Builder(id, name, birthDate);
+    }
+
     // Builder class
     public static class Builder {
         private String studentId;

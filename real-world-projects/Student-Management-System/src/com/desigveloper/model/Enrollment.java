@@ -22,7 +22,7 @@ public class Enrollment {
     }
 
     // Getters
-    public String getEnrollmentId() {
+    public String getId() {
         return this.enrollmentId;
     }
 

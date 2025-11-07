@@ -19,7 +19,7 @@ public class Course {
     }
 
     // Getters
-    public String getCourseId() {
+    public String getId() {
         return this.courseCode;
     }
 
