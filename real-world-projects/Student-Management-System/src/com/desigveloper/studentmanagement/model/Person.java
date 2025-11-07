@@ -1,4 +1,4 @@
-package com.desigveloper.model;
+package com.desigveloper.studentmanagement.model;
 
 public abstract class Person {
     private String id;

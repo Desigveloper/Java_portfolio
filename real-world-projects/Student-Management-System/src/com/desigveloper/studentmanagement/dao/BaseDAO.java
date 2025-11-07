@@ -1,4 +1,4 @@
-package com.desigveloper.dao;
+package com.desigveloper.studentmanagement.dao;
 
 import java.util.List;
 import java.util.Optional;

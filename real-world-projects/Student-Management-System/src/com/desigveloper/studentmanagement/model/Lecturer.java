@@ -1,4 +1,4 @@
-package com.desigveloper.model;
+package com.desigveloper.studentmanagement.model;
 
 public class Lecturer extends Person{
     private final String department;
@@ -19,6 +19,11 @@ public class Lecturer extends Person{
                 .formatted(getId(), getName(), getEmail(), department);
     }
 
+    // Static builder method
+    public static Builder builder(String id, String name, String email) {
+        return new Builder(id, name, email);
+    }
+
     // Static builder class
     public static class Builder {
         private String lecturerId;
@@ -26,14 +31,14 @@ public class Lecturer extends Person{
         private String email;
         private String department;
 
-        public Builder(String lecturerId, String name, String department) {
+        public Builder(String lecturerId, String name, String email) {
             this.lecturerId = lecturerId;
             this.name = name;
-            this.department = department;
+            this.email = email;
         }
 
-        Builder withEmail(String email) {
-            this.email = email;
+        public Builder withDepartment(String department) {
+            this.department = department;
             return this;
         }
 

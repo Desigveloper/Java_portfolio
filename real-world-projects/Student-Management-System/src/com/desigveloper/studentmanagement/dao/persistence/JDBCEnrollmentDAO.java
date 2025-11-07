@@ -1,7 +1,6 @@
-package com.desigveloper.dao.persistence;
+package com.desigveloper.studentmanagement.dao.persistence;
 
-import com.desigveloper.model.Enrollment;
-import com.desigveloper.model.Student;
+import com.desigveloper.studentmanagement.model.Enrollment;
 
 import java.util.ArrayList;
 import java.util.HashMap;

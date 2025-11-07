@@ -1,6 +1,6 @@
-package com.desigveloper.dao;
+package com.desigveloper.studentmanagement.dao;
 
-import com.desigveloper.model.Enrollment;
+import com.desigveloper.studentmanagement.model.Enrollment;
 
 import java.util.List;
 import java.util.Optional;

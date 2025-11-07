@@ -1,6 +1,4 @@
-package com.desigveloper.model;
-
-import java.time.LocalDate;
+package com.desigveloper.studentmanagement.model;
 
 public class Enrollment {
     private final String enrollmentId;
@@ -9,13 +7,13 @@ public class Enrollment {
     private final String grade;
     private final Integer semester;
     private final String status;
-    private final LocalDate date;
+    private final String date;
 
     private Enrollment(Builder builder) {
         this.enrollmentId = builder.enrollmentId;
         this.studentId = builder.studentId;
         this.courseId = builder.courseId;
-        this.grade = builder.grade = "Not grader"; // Default value
+        this.grade = builder.grade;
         this.semester = builder.semester;
         this.status = builder.status;
         this.date = builder.date;
@@ -46,7 +44,7 @@ public class Enrollment {
         return this.status;
     }
     
-    public LocalDate getDate() {
+    public String getDate() {
         return this.date;
     }
 
@@ -57,6 +55,11 @@ public class Enrollment {
                 .formatted(enrollmentId, studentId, courseId, grade, semester, status, date);
     }
 
+    // Static builder method
+    public static Builder builder(String enrollmentId, String studentId, String courseId) {
+        return new Builder(enrollmentId, studentId, courseId);
+    }
+
     // Static builder class
     public static class Builder {
         private String enrollmentId;
@@ -65,30 +68,30 @@ public class Enrollment {
         private Integer semester;
         private String grade;
         private String status;
-        private LocalDate date;
+        private String date;
 
-        Builder (String enrollmentId, String studentId, String courseId) {
+        public Builder (String enrollmentId, String studentId, String courseId) {
             this.enrollmentId = enrollmentId;
             this.studentId = studentId;
             this.courseId = courseId;
         }
 
-        Builder withGrade(String grade) {
+        public Builder withGrade(String grade) {
             this.grade = grade;
             return this;
         }
 
-        Builder withSemester(int semester) {
+        public Builder withSemester(int semester) {
             this.semester = semester;
             return this;
         }
 
-        Builder withStatus(String status) {
+        public Builder withStatus(String status) {
             this.status = status;
             return this;
         }
 
-        Builder withEnrollemntDate(LocalDate date) {
+        public Builder withEnrollmentDate(String date) {
             this.date = date;
             return this;
         }

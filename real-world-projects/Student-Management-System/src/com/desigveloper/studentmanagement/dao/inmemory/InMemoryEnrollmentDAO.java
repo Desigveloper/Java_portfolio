@@ -1,7 +1,7 @@
-package com.desigveloper.dao.inmemory;
+package com.desigveloper.studentmanagement.dao.inmemory;
 
-import com.desigveloper.dao.EnrollmentDAO;
-import com.desigveloper.model.Enrollment;
+import com.desigveloper.studentmanagement.dao.EnrollmentDAO;
+import com.desigveloper.studentmanagement.model.Enrollment;
 
 import java.util.ArrayList;
 import java.util.List;

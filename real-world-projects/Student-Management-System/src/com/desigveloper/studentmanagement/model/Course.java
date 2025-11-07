@@ -1,4 +1,4 @@
-package com.desigveloper.model;
+package com.desigveloper.studentmanagement.model;
 
 
 public class Course {
@@ -49,6 +49,11 @@ public class Course {
                 .formatted(courseCode, title, credit, prerequisite, capacity);
     }
 
+    // Static builder method
+    public static Builder builder(String code, String title, int credit) {
+        return new Builder(code, title, credit);
+    }
+
     // Static Builder class
     public static class Builder {
         private String courseCode;
@@ -76,6 +81,10 @@ public class Course {
         public Builder withCapacity(int capacity) {
             this.capacity = capacity;
             return this;
+        }
+
+        public Course build() {
+            return new Course(this);
         }
         
     }

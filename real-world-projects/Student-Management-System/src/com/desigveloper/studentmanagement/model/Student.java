@@ -1,4 +1,4 @@
-package com.desigveloper.model;
+package com.desigveloper.studentmanagement.model;
 
 import java.time.LocalDate;
 
@@ -61,22 +61,22 @@ public class Student extends Person {
             this.birthDate = birthDate;
         }
 
-        Builder withMajor(String major) {
+        public Builder withMajor(String major) {
             this.major = major;
             return this;
         }
 
-        Builder withEmail(String email) {
+        public Builder withEmail(String email) {
             this.email = email;
             return this;
         }
 
-        Builder withEnrolledCourse(String enrollmentStatus) {
+        public Builder withEnrolledCourse(String enrollmentStatus) {
             this.enrollmentStatus = enrollmentStatus;
             return this;
         }
 
-        Builder withStudentGPA(String studentGPA) {
+        public Builder withStudentGPA(String studentGPA) {
             this.studentGPA = studentGPA;
             return this;
         }

@@ -1,6 +1,6 @@
-package com.desigveloper.dao.persistence;
+package com.desigveloper.studentmanagement.dao.persistence;
 
-import com.desigveloper.model.Lecturer;
+import com.desigveloper.studentmanagement.model.Lecturer;
 
 import java.util.ArrayList;
 import java.util.List;

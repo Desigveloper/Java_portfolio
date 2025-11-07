@@ -1,6 +1,6 @@
-package com.desigveloper.dao.persistence;
+package com.desigveloper.studentmanagement.dao.persistence;
 
-import com.desigveloper.model.Course;
+import com.desigveloper.studentmanagement.model.Course;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class JDBCCourseDAO {
     }
 
     // Create
-    public void addLecturer(Course course) {
+    public void addCourse(Course course) {
         courses.put(course.getId(), course);
     }
 

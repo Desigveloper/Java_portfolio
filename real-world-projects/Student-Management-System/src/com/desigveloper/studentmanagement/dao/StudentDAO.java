@@ -1,6 +1,6 @@
-package com.desigveloper.dao;
+package com.desigveloper.studentmanagement.dao;
 
-import com.desigveloper.model.Student;
+import com.desigveloper.studentmanagement.model.Student;
 
 import java.util.List;
 

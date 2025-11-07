@@ -1,8 +1,8 @@
-package com.desigveloper.services;
+package com.desigveloper.studentmanagement.services;
 
-import com.desigveloper.model.Lecturer;
-import com.desigveloper.model.Student;
-import com.desigveloper.model.Course;
+import com.desigveloper.studentmanagement.model.Lecturer;
+import com.desigveloper.studentmanagement.model.Student;
+import com.desigveloper.studentmanagement.model.Course;
 
 public class Admin {
     private final String adminID;
