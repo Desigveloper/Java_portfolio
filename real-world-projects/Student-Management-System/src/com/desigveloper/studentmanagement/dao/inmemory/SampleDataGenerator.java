@@ -1,6 +1,5 @@
 package com.desigveloper.studentmanagement.dao.inmemory;
 
-import com.desigveloper.studentmanagement.dao.inmemory.InMemoryStudentDAO;
 import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryCourseDaoMap;
 import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryEnrollmentDaoMap;
 import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryLecturerDaoMap;
