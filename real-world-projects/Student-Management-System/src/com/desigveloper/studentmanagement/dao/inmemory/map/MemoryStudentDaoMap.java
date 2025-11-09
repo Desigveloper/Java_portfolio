@@ -1,4 +1,4 @@
-package com.desigveloper.studentmanagement.dao.persistence;
+package com.desigveloper.studentmanagement.dao.inmemory.map;
 
 import com.desigveloper.studentmanagement.model.Student;
 
@@ -7,17 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JDBCStudentDAO {
+public class MemoryStudentDaoMap {
     private Map<String, Student> students = new HashMap<>();
-    private static JDBCStudentDAO instance;
+    private static MemoryStudentDaoMap instance;
 
-    public JDBCStudentDAO() {
+    public MemoryStudentDaoMap() {
         // Private constructor for singleton pattern
     }
 
-    public static JDBCStudentDAO getInstance() {
+    public static MemoryStudentDaoMap getInstance() {
         if (instance == null) {
-            instance = new JDBCStudentDAO();
+            instance = new MemoryStudentDaoMap();
         }
         return instance;
     }

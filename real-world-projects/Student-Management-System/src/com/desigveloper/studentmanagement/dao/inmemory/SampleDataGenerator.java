@@ -1,6 +1,10 @@
-package com.desigveloper.studentmanagement.dao.persistence;
+package com.desigveloper.studentmanagement.dao.inmemory;
 
 import com.desigveloper.studentmanagement.dao.inmemory.InMemoryStudentDAO;
+import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryCourseDaoMap;
+import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryEnrollmentDaoMap;
+import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryLecturerDaoMap;
+import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryStudentDaoMap;
 import com.desigveloper.studentmanagement.model.Course;
 import com.desigveloper.studentmanagement.model.Enrollment;
 import com.desigveloper.studentmanagement.model.Lecturer;
@@ -11,12 +15,11 @@ import java.time.LocalDate;
 public class SampleDataGenerator {
     public void generateSampleData() {
         // JDBC DAO instance
-        JDBCStudentDAO persistStudentDao = new JDBCStudentDAO();
-        JDBCLecturerDAO persistLecturerDao = new JDBCLecturerDAO();
-        JDBCCourseDAO persistCourseDao = new JDBCCourseDAO();
-        JDBCEnrollmentDAO persistEnrollmentDao = new JDBCEnrollmentDAO();
+        MemoryStudentDaoMap studentDao = new MemoryStudentDaoMap();
+        MemoryLecturerDaoMap lecturerDao = new MemoryLecturerDaoMap();
+        MemoryCourseDaoMap courseDao = new MemoryCourseDaoMap();
+        MemoryEnrollmentDaoMap enrollmentDao = new MemoryEnrollmentDaoMap();
 
-        InMemoryStudentDAO inmemory = new InMemoryStudentDAO();
 
         // Sample students
         Student johnDoe = Student.builder("S001", "John Doe", LocalDate.of(1996, 5, 17))
@@ -40,12 +43,10 @@ public class SampleDataGenerator {
                 .withStudentGPA("nil")
                 .build();
 
-        persistStudentDao.addStudent(johnDoe);
-        persistStudentDao.addStudent(janeSmith);
-        persistStudentDao.addStudent(bobJohnson);
+        studentDao.addStudent(johnDoe);
+        studentDao.addStudent(janeSmith);
+        studentDao.addStudent(bobJohnson);
 
-
-        inmemory.create(janeSmith);
         // Add sample lecturers
         Lecturer aliceBrown = Lecturer.builder("T001", "Dr. Alice Brown", "alice.brown@university.edu")
                 .withDepartment("Computer Science")
@@ -59,9 +60,9 @@ public class SampleDataGenerator {
                 .withDepartment("Physics")
                 .build();
 
-        persistLecturerDao.addLecturer(aliceBrown);
-        persistLecturerDao.addLecturer(charlieWilson);
-        persistLecturerDao.addLecturer(lilianPhilips);
+        lecturerDao.addLecturer(aliceBrown);
+        lecturerDao.addLecturer(charlieWilson);
+        lecturerDao.addLecturer(lilianPhilips);
 
         // Sample courses
         Course programmingIntro = Course.builder("C001", "Introduction to programming", 3)
@@ -88,10 +89,10 @@ public class SampleDataGenerator {
                 .withPrerequisite("General Science")
                 .build();
 
-        persistCourseDao.addCourse(programmingIntro);
-        persistCourseDao.addCourse(calculusI);
-        persistCourseDao.addCourse(dataStructure);
-        persistCourseDao.addCourse(physicIntro);
+        courseDao.addCourse(programmingIntro);
+        courseDao.addCourse(calculusI);
+        courseDao.addCourse(dataStructure);
+        courseDao.addCourse(physicIntro);
 
 
         // Sample enrollments
@@ -130,10 +131,10 @@ public class SampleDataGenerator {
                 .withStatus("Active")
                 .build();
 
-        persistEnrollmentDao.addEnrollment(e1S001);
-        persistEnrollmentDao.addEnrollment(e2S001);
-        persistEnrollmentDao.addEnrollment(e3S002);
-        persistEnrollmentDao.addEnrollment(e4S003);
-        persistEnrollmentDao.addEnrollment(e5S002);
+        enrollmentDao.addEnrollment(e1S001);
+        enrollmentDao.addEnrollment(e2S001);
+        enrollmentDao.addEnrollment(e3S002);
+        enrollmentDao.addEnrollment(e4S003);
+        enrollmentDao.addEnrollment(e5S002);
     }
 }

@@ -1,4 +1,4 @@
-package com.desigveloper.studentmanagement.dao.persistence;
+package com.desigveloper.studentmanagement.dao.inmemory.map;
 
 import com.desigveloper.studentmanagement.model.Lecturer;
 
@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JDBCLecturerDAO {
+public class MemoryLecturerDaoMap {
     private Map<String, Lecturer> lecturers = new HashMap<>();
-    private static JDBCLecturerDAO instance;
+    private static MemoryLecturerDaoMap instance;
 
-    public static JDBCLecturerDAO getInstance() {
+    public static MemoryLecturerDaoMap getInstance() {
         if (instance == null)
-            instance = new JDBCLecturerDAO();
+            instance = new MemoryLecturerDaoMap();
         return instance;
     }
 

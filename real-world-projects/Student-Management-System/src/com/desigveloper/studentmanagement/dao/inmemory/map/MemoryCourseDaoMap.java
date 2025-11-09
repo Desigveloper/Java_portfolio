@@ -1,4 +1,4 @@
-package com.desigveloper.studentmanagement.dao.persistence;
+package com.desigveloper.studentmanagement.dao.inmemory.map;
 
 import com.desigveloper.studentmanagement.model.Course;
 
@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JDBCCourseDAO {
+public class MemoryCourseDaoMap {
     private Map<String, Course> courses = new HashMap<>();
-    private static JDBCCourseDAO instance;
+    private static MemoryCourseDaoMap instance;
 
-    public static JDBCCourseDAO getInstance() {
+    public static MemoryCourseDaoMap getInstance() {
         if (instance == null)
-            instance = new JDBCCourseDAO();
+            instance = new MemoryCourseDaoMap();
         return instance;
     }
 
