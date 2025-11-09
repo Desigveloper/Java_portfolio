@@ -1,4 +1,4 @@
-package com.desigveloper.studentmanagement.dao.inmemory;
+package com.desigveloper.studentmanagement.dao.inmemory.list;
 
 import com.desigveloper.studentmanagement.dao.CourseDAO;
 import com.desigveloper.studentmanagement.model.Course;
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class InMemoryCourseDAO implements CourseDAO {
+public class MemoryCourseDaoList implements CourseDAO {
     private List<Course> courses = new ArrayList<>();
 
     @Override
