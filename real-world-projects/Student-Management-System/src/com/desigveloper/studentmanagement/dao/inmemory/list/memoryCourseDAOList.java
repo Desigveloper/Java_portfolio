@@ -14,7 +14,7 @@ public class InMemoryCourseDAO implements CourseDAO {
     @Override
     public Optional<Course> get(String courseCode) {
         return courses.stream()
-                .filter(course -> course.getCourseId().equals(courseCode))
+                .filter(course -> course.getId().equals(courseCode))
                 .findFirst();
     }
 
@@ -38,13 +38,13 @@ public class InMemoryCourseDAO implements CourseDAO {
 
     @Override
     public void delete(Course course) {
-        courses.removeIf(c -> c.getCourseId().equals(course.getCourseId()));
+        courses.removeIf(c -> c.getId().equals(course.getId()));
     }
 
     @Override
     public List<Course> findByCode(String courseCode) {
         return courses.stream()
-                .filter(course -> course.getCourseId().equalsIgnoreCase(courseCode))
+                .filter(course -> course.getId().equalsIgnoreCase(courseCode))
                 .collect(Collectors.toList());
     }
 }

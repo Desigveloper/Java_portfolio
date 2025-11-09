@@ -14,7 +14,7 @@ public class InMemoryEnrollmentDAO implements EnrollmentDAO {
     @Override
     public Optional<Enrollment> get(String enrollmentId) {
         return enrollments.stream()
-                .filter(enrollment -> enrollment.getEnrollmentId().equals(enrollmentId))
+                .filter(enrollment -> enrollment.getId().equals(enrollmentId))
                 .findFirst();
     }
 

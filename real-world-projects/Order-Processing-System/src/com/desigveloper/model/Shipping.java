@@ -1,4 +1,4 @@
-package com.desigveloper;
+package com.desigveloper.model;
 public class Shipping {
     
 }

@@ -1,5 +1,6 @@
 package com.desigveloper.studentmanagement.dao.persistence;
 
+import com.desigveloper.studentmanagement.dao.inmemory.InMemoryStudentDAO;
 import com.desigveloper.studentmanagement.model.Course;
 import com.desigveloper.studentmanagement.model.Enrollment;
 import com.desigveloper.studentmanagement.model.Lecturer;
@@ -14,6 +15,8 @@ public class SampleDataGenerator {
         JDBCLecturerDAO persistLecturerDao = new JDBCLecturerDAO();
         JDBCCourseDAO persistCourseDao = new JDBCCourseDAO();
         JDBCEnrollmentDAO persistEnrollmentDao = new JDBCEnrollmentDAO();
+
+        InMemoryStudentDAO inmemory = new InMemoryStudentDAO();
 
         // Sample students
         Student johnDoe = Student.builder("S001", "John Doe", LocalDate.of(1996, 5, 17))
@@ -42,6 +45,7 @@ public class SampleDataGenerator {
         persistStudentDao.addStudent(bobJohnson);
 
 
+        inmemory.create(janeSmith);
         // Add sample lecturers
         Lecturer aliceBrown = Lecturer.builder("T001", "Dr. Alice Brown", "alice.brown@university.edu")
                 .withDepartment("Computer Science")

@@ -1,10 +1,19 @@
 import java.util.Scanner;
 
 public class Application {
-    int mode;
     public static void main(String... args) {
+      Scanner sc = new Scanner(System.in);
+        String str = sc.next();
+        int n = sc.nextInt();
 
+        String start = str.substring(0, n);
+        String end = str.substring(n);
 
+        if (n > str.length()) {
+            System.out.println(str);
+        } else {
+            System.out.println(end + start);
+        }
     }
 
     static void printXor(int condition1, int condition2) {
