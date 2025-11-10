@@ -1,9 +1,5 @@
 package com.desigveloper.studentmanagement.dao.inmemory;
 
-import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryCourseDaoMap;
-import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryEnrollmentDaoMap;
-import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryLecturerDaoMap;
-import com.desigveloper.studentmanagement.dao.inmemory.map.MemoryStudentDaoMap;
 import com.desigveloper.studentmanagement.model.Course;
 import com.desigveloper.studentmanagement.model.Enrollment;
 import com.desigveloper.studentmanagement.model.Lecturer;
@@ -13,11 +9,11 @@ import java.time.LocalDate;
 
 public class SampleDataGenerator {
     public void generateSampleData() {
-        // JDBC DAO instance
-        MemoryStudentDaoMap studentDao = new MemoryStudentDaoMap();
-        MemoryLecturerDaoMap lecturerDao = new MemoryLecturerDaoMap();
-        MemoryCourseDaoMap courseDao = new MemoryCourseDaoMap();
-        MemoryEnrollmentDaoMap enrollmentDao = new MemoryEnrollmentDaoMap();
+        // DAO instance
+        MemoryStudentDaoImp studentDao = new MemoryStudentDaoImp();
+        MemoryLecturerDaoImp lecturerDao = new MemoryLecturerDaoImp();
+        MemoryCourseDaoImp courseDao = new MemoryCourseDaoImp();
+        MemoryEnrollmentDaoImp enrollmentDao = new MemoryEnrollmentDaoImp();
 
 
         // Sample students
