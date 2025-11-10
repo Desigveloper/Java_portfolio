@@ -53,9 +53,9 @@ public class MemoryCourseDaoImp implements CourseDAO {
     }
 
     @Override
-    public List<Course> findByCode(String courseCode) {
+    public List<Course> findByLecturerId(String lecturerId) {
         return courses.values().stream()
-                .filter(course -> course.getId().equals(courseCode))
+                .filter(course -> course.getLecturerId().equals(lecturerId))
                 .collect(Collectors.toList());
     }
 

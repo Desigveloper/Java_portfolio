@@ -10,10 +10,10 @@ import java.time.LocalDate;
 public class SampleDataGenerator {
     public void generateSampleData() {
         // DAO instance
-        MemoryStudentDaoImp studentDao = new MemoryStudentDaoImp();
-        MemoryLecturerDaoImp lecturerDao = new MemoryLecturerDaoImp();
-        MemoryCourseDaoImp courseDao = new MemoryCourseDaoImp();
-        MemoryEnrollmentDaoImp enrollmentDao = new MemoryEnrollmentDaoImp();
+        MemoryStudentDaoImp studentDao = MemoryStudentDaoImp.getInstance();
+        MemoryLecturerDaoImp lecturerDao = MemoryLecturerDaoImp.getInstance();
+        MemoryCourseDaoImp courseDao = MemoryCourseDaoImp.getInstance();
+        MemoryEnrollmentDaoImp enrollmentDao = MemoryEnrollmentDaoImp.getInstance();
 
 
         // Sample students
@@ -38,9 +38,9 @@ public class SampleDataGenerator {
                 .withStudentGPA("nil")
                 .build();
 
-        studentDao.addStudent(johnDoe);
-        studentDao.addStudent(janeSmith);
-        studentDao.addStudent(bobJohnson);
+        studentDao.create(johnDoe);
+        studentDao.create(janeSmith);
+        studentDao.create(bobJohnson);
 
         // Add sample lecturers
         Lecturer aliceBrown = Lecturer.builder("T001", "Dr. Alice Brown", "alice.brown@university.edu")
@@ -55,9 +55,9 @@ public class SampleDataGenerator {
                 .withDepartment("Physics")
                 .build();
 
-        lecturerDao.addLecturer(aliceBrown);
-        lecturerDao.addLecturer(charlieWilson);
-        lecturerDao.addLecturer(lilianPhilips);
+        lecturerDao.create(aliceBrown);
+        lecturerDao.create(charlieWilson);
+        lecturerDao.create(lilianPhilips);
 
         // Sample courses
         Course programmingIntro = Course.builder("C001", "Introduction to programming", 3)
@@ -84,10 +84,10 @@ public class SampleDataGenerator {
                 .withPrerequisite("General Science")
                 .build();
 
-        courseDao.addCourse(programmingIntro);
-        courseDao.addCourse(calculusI);
-        courseDao.addCourse(dataStructure);
-        courseDao.addCourse(physicIntro);
+        courseDao.create(programmingIntro);
+        courseDao.create(calculusI);
+        courseDao.create(dataStructure);
+        courseDao.create(physicIntro);
 
 
         // Sample enrollments
@@ -126,10 +126,10 @@ public class SampleDataGenerator {
                 .withStatus("Active")
                 .build();
 
-        enrollmentDao.addEnrollment(e1S001);
-        enrollmentDao.addEnrollment(e2S001);
-        enrollmentDao.addEnrollment(e3S002);
-        enrollmentDao.addEnrollment(e4S003);
-        enrollmentDao.addEnrollment(e5S002);
+        enrollmentDao.create(e1S001);
+        enrollmentDao.create(e2S001);
+        enrollmentDao.create(e3S002);
+        enrollmentDao.create(e4S003);
+        enrollmentDao.create(e5S002);
     }
 }
