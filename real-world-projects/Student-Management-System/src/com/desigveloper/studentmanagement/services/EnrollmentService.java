@@ -63,14 +63,31 @@ public class EnrollmentService {
         return enrollmentDao.findByStudentAndCourse(studentId, courseId);
     }
 
-    public void updateEnrollment(Enrollment enrollment) {
-        if (enrollmentDao.get(enrollment.getId()).isEmpty()) {
-            throw new IllegalArgumentException("Enrollment with ID: " + enrollment.getId() + " does not exist.");
+    public void updateEnrollment(String enrollmentId) {
+        Optional<Enrollment> enrollment = enrollmentDao.get(enrollmentId);
+        if (enrollment.isEmpty()) {
+            throw new IllegalArgumentException("Enrollment with ID: " + enrollmentId + " does not exist.");
         }
-        enrollmentDao.update(enrollment);
+        enrollmentDao.update(enrollment.get());
     }
 
-    public void deleteEnrollment(Enrollment enrollment) {
-        enrollmentDao.delete(enrollment);
+    public  void updateEnrollmentGrade(String enrollmentId, String grade) {
+        Optional<Enrollment> enrollmentOpt = enrollmentDao.get(enrollmentId);
+
+        if (enrollmentOpt.isPresent()) {
+            Enrollment enrollment = enrollmentOpt.get();
+            enrollment.setGrade(grade);
+            enrollmentDao.update(enrollment);
+        } else {
+            throw new IllegalArgumentException("Enrollment with ID: " + enrollmentId + " does not exist.");
+        }
+    }
+    public boolean dropEnrollment(String enrollmentId) {
+        Optional<Enrollment> enrollment = enrollmentDao.get(enrollmentId);
+        if (enrollment.isEmpty())
+            return false; // Enrollment with Id not found
+
+        enrollmentDao.delete(enrollment.get());
+        return true;
     }
 }

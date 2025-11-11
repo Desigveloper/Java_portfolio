@@ -23,12 +23,13 @@ public class StudentService {
     }
 
     // Business logic in methods
-    public void addStudent(Student student) {
+    public boolean registerStudent(Student student) {
         // Validation: Checking if student already exist
         if (studentdao.get(student.getId()).isPresent()) {
             throw new  IllegalArgumentException("Student with ID " + student.getId() + " already exists.");
         }
         studentdao.create(student);
+        return true;
     }
 
     public Optional<Student> getStudent(String studentId) {
@@ -39,15 +40,25 @@ public class StudentService {
         return new ArrayList<>(studentdao.getAll());
     }
 
-    public void updateStudent(Student student) {
-        if (studentdao.get(student.getId()).isEmpty()) {
+    public void updateStudent(Student student, String name, String email, String major) {
+        Optional<Student> existing = studentdao.get(student.getId());
+
+        if (existing.isEmpty()) {
             throw new IllegalArgumentException("Student with ID: " + student.getId() + " does not exist.");
         }
-        studentdao.update(student);
+
+        Student update = Student.builder(student.getId(), name, student.getBirthDate())
+                .withEmail(email).withMajor(major).withStudentGPA(student.getGPA()).build();
+        studentdao.update(update);
     }
 
-    public void deleteStudent(Student student) {
-        studentdao.delete(student);
+    public boolean deleteStudent(String studentId) {
+        Optional<Student> student = studentdao.get(studentId);
+        if (student.isEmpty())
+            return false; // Student does not exist
+
+        studentdao.delete(student.get());
+        return true;
     }
 
     public List<Student> getStudentsByMajor(String major) {

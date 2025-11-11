@@ -4,7 +4,7 @@ public class Enrollment {
     private final String enrollmentId;
     private final String studentId;
     private final String courseId;
-    private final String grade;
+    private String grade;
     private final Integer semester;
     private final String status;
     private final String date;
@@ -13,7 +13,6 @@ public class Enrollment {
         this.enrollmentId = builder.enrollmentId;
         this.studentId = builder.studentId;
         this.courseId = builder.courseId;
-        this.grade = builder.grade;
         this.semester = builder.semester;
         this.status = builder.status;
         this.date = builder.date;
@@ -26,6 +25,10 @@ public class Enrollment {
 
     public String getGrade() {
         return this.grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
     public Integer getSemester() {
@@ -66,7 +69,6 @@ public class Enrollment {
         private String studentId;
         private String courseId;
         private Integer semester;
-        private String grade;
         private String status;
         private String date;
 
@@ -74,11 +76,6 @@ public class Enrollment {
             this.enrollmentId = enrollmentId;
             this.studentId = studentId;
             this.courseId = courseId;
-        }
-
-        public Builder withGrade(String grade) {
-            this.grade = grade;
-            return this;
         }
 
         public Builder withSemester(int semester) {
