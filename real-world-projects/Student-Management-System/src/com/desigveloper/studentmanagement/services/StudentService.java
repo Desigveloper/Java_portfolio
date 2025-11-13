@@ -40,7 +40,7 @@ public class StudentService {
         return new ArrayList<>(studentdao.getAll());
     }
 
-    public void updateStudent(Student student, String name, String email, String major) {
+    public boolean updateStudent(Student student, String name, String email, String major) {
         Optional<Student> existing = studentdao.get(student.getId());
 
         if (existing.isEmpty()) {
@@ -50,6 +50,7 @@ public class StudentService {
         Student update = Student.builder(student.getId(), name, student.getBirthDate())
                 .withEmail(email).withMajor(major).withStudentGPA(student.getGPA()).build();
         studentdao.update(update);
+        return true;
     }
 
     public boolean deleteStudent(String studentId) {

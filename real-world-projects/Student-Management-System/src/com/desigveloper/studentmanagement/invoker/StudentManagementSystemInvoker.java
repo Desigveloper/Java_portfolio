@@ -1,5 +1,7 @@
 package com.desigveloper.studentmanagement.invoker;
 
+import com.desigveloper.studentmanagement.model.Course;
+import com.desigveloper.studentmanagement.model.Lecturer;
 import com.desigveloper.studentmanagement.model.Student;
 import com.desigveloper.studentmanagement.services.*;
 
@@ -18,7 +20,7 @@ public class StudentManagementSystemInvoker {
 
     public static void main(String[] args) {
         System.out.println("=== Student System Management System ===");
-        showMenu()
+        showMenu();
     }
 
     public static void showMenu() {
@@ -38,7 +40,7 @@ public class StudentManagementSystemInvoker {
                 case 1 -> showStudentMenu();
                 case 2 -> showLecturerMenu();
                 case 3 -> showCourseMenu();
-                case 4 -> showEnrollmenttMenu();
+                case 4 -> showEnrollmentMenu();
                 case 5 -> {
                     sampleDataService.generateSampleData();
                     System.out.println("Data sample generated successfully");
@@ -57,7 +59,9 @@ public class StudentManagementSystemInvoker {
         }
     }
 
+    // ========= STUDENT MENU METHODS ===========
     private static void showStudentMenu() {
+        // Implementation for Student Menu
         while (true) {
             System.out.println("\n--- STUDENT MENU ---");
             System.out.println("1. Register Student");
@@ -86,10 +90,10 @@ public class StudentManagementSystemInvoker {
 
     private static void registerStudent() {
         System.out.print("Enter student ID: ");
-        String studentId = scanner.next();
+        String studentId = scanner.nextLine();
 
         System.out.print("Enter student name: ");
-        String name = scanner.next();
+        String name = scanner.nextLine();
 
         System.out.print("Enter student birth date in yyyy/mm/dd: ");
         int year = scanner.nextInt();
@@ -97,9 +101,9 @@ public class StudentManagementSystemInvoker {
         int day = scanner.nextInt();
 
         System.out.print("Enter student email: ");
-        String email = scanner.next();
+        String email = scanner.nextLine();
         System.out.print("Enter student major: ");
-        String major = scanner.next();
+        String major = scanner.nextLine();
 
         Student student = Student.builder(studentId, name, LocalDate.of(year, month, day))
                 .withEmail(email).withMajor(major).withStudentGPA("Nil")
@@ -135,6 +139,362 @@ public class StudentManagementSystemInvoker {
     }
 
     private static void updateStudent() {
+        System.out.print("Enter student ID: ");
+        String id = scanner.nextLine();
 
+        Optional<Student> existing = studentService.getStudent(id);
+        if (existing.isEmpty()) {
+            System.out.println("Student not found");
+            return;
+        } else {
+            System.out.print("Enter new name: ");
+            String name = scanner.nextLine();
+            System.out.print("Enter new email: ");
+            String email = scanner.nextLine();
+            System.out.print("Enter new major: ");
+            String major = scanner.nextLine();
+
+            Student student = existing.get();
+            boolean success = studentService.updateStudent(student, name, email, major);
+
+            if (success) {
+                System.out.println("Student updated successfully");
+            } else {
+                System.out.println("Failed to update student");
+            }
+        }
+    }
+
+    private static void deleteStudent() {
+        System.out.print("Enter student ID: ");
+        String id = scanner.nextLine();
+
+        boolean success = studentService.deleteStudent(id);
+        if (success) {
+            System.out.println("Student deleted successfully");
+        } else {
+            System.out.println("Student not found");
+        }
+    }
+
+    private static void findStudentByMajor() {
+        System.out.print("Enter major: ");
+        String major = scanner.nextLine();
+
+        List<Student> students = studentService.getAllStudents();
+
+        if (students.isEmpty()) {
+            System.out.printf("No student found in %s major\n", major);
+        } else {
+            System.out.printf("List of student in %s major:\n", major);
+            students.forEach(System.out::println);
+        }
+    }
+
+    // ========= LECTURER MENU METHODS ===========
+    private static void showLecturerMenu() {
+        // Implementation for Lecturer Menu
+        while (true) {
+            System.out.println("\n--- LECTURER MENU ---");
+            System.out.println("1. Add Lecturer");
+            System.out.println("2. View Lecturer");
+            System.out.println("3. View All Lecturers");
+            System.out.println("4. Update Lecturer");
+            System.out.println("5. Delete Lecturer");
+            System.out.println("6. Find Lecturer By Department");
+            System.out.println("0. Back to Main Menu");
+            System.out.print("Choose an option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1 -> addLecturer();
+                case 2 -> viewLecturer();
+                case 3 -> viewAllLecturers();
+                case 4 -> updateLecturer();
+                case 5 -> deleteLecturer();
+                case 6 -> findLecturerByDepartment();
+                case 0 -> {return;}
+                default -> System.out.println("Invalid option");
+            }
+        }
+    }
+
+    private static void addLecturer() {
+        System.out.print("Enter lecture ID: ");
+        String id = scanner.nextLine();
+
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Enter email: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Enter department: ");
+        String department = scanner.nextLine();
+
+        Lecturer lecturer = Lecturer.builder(id, name, email).withDepartment(department).build();
+
+        boolean success = lecturerService.addLecturer(lecturer);
+
+
+        if (success) {
+            System.out.println("Lecturer registered successfully!");
+        } else {
+            System.out.printf("Lectured ID: %s already exists", id);
+        }
+    }
+
+    private static void viewLecturer() {
+        System.out.print("Enter lecturer ID: ");
+        String id = scanner.nextLine();
+
+        lecturerService.getLecturer(id).ifPresentOrElse(
+                lecturer -> System.out.println("Lecturer: " + lecturer),
+                () -> System.out.println("Lecturer ID not found")
+        );
+    }
+
+    private static void viewAllLecturers() {
+        List<Lecturer> lecturers = lecturerService.getAllLecturers();
+
+        if (lecturers.isEmpty()) {
+            System.out.println("No lecturer found");
+        } else {
+            System.out.println("List of assigned lecturers");
+            lecturers.forEach(System.out::println);
+        }
+    }
+
+    private static void updateLecturer() {
+        System.out.print("Enter lecturer ID: ");
+        String id = scanner.nextLine();
+
+        Optional<Lecturer> existing = lecturerService.getLecturer(id);
+
+        if (existing.isEmpty()) {
+            System.out.printf("Lecturer with ID: %s not found", id);
+        } else {
+            System.out.print("Enter new name: ");
+            String name = scanner.nextLine();
+
+            System.out.print("Enter new email: ");
+            String email = scanner.nextLine();
+
+            System.out.print("Enter new department: ");
+            String department = scanner.nextLine();
+
+            Lecturer update = Lecturer.builder(existing.get().getId(), name, email)
+                    .withDepartment(department).build();
+            boolean success = lecturerService.updateLecturer(update);
+
+            if (success) {
+                System.out.println("Lecturer details updated successfully");
+            } else {
+                System.out.println("Failed to update lecturer");
+            }
+        }
+    }
+
+    private static void deleteLecturer() {
+        System.out.print("Enter lecturer ID: ");
+        String id = scanner.nextLine();
+
+        boolean success = lecturerService.deleteLecturer(id);
+
+        if (success)
+            System.out.println("Lecturer with ID: %s removed successfully.");
+    }
+
+    private static void findLecturerByDepartment() {
+        System.out.print("Enter department: ");
+        String department = scanner.nextLine();
+
+        List<Lecturer> lecturers = lecturerService.getLecturerByDepartment(department);
+
+        if (lecturers.isEmpty()) {
+            System.out.printf("No lecturers found in this %s department\n", department);
+        } else {
+            System.out.printf("List of lecturers in %s department.\n", department);
+            lecturers.forEach(System.out::println);
+        }
+    }
+
+    // ========= COURSE MENU METHODS ===========
+    private static void showCourseMenu() {
+        // Implementation for Lecturer Menu
+        while (true) {
+            System.out.println("\n--- COURSE MENU ---");
+            System.out.println("1. Add Course");
+            System.out.println("2. View Course");
+            System.out.println("3. View All Courses");
+            System.out.println("4. Update Course");
+            System.out.println("5. Delete Course");
+            System.out.println("6. Find Lecturer By Lecturer ID");
+            System.out.println("0. Back to Main Menu");
+            System.out.print("Choose an option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1 -> createCourse();
+                case 2 -> viewCourse();
+                case 3 -> viewAllCourses();
+                case 4 -> updateCourse();
+                case 5 -> deleteCourse();
+                case 6 -> findLecturerByLecturerId();
+                case 0 -> {return;}
+                default -> System.out.println("Invalid option");
+            }
+        }
+    }
+    private static void createCourse() {
+        // Implementation for adding a course
+        System.out.print("Enter course code: ");
+        String courseCode = scanner.nextLine();
+
+        System.out.print("Enter course title: ");
+        String title = scanner.nextLine();
+
+        System.out.println("Enter course credit: ");
+        int credit = scanner.nextInt();
+
+        System.out.println("Enter course capacity: ");
+        int capacity = scanner.nextInt();
+
+        System.out.println("Enter lecturer ID: ");
+        String lecturerId = scanner.nextLine();
+
+        System.out.print("Enter prerequisite: ");
+        String prerequisite = scanner.nextLine();
+
+        Course course = Course.builder(courseCode, title, credit)
+                .withCapacity(capacity)
+                .withLecturerId(lecturerId)
+                .withPrerequisite(prerequisite)
+                .build();
+
+        boolean success = courseService.addCourse(course);
+
+        if (success) {
+            System.out.println("Course added successfully!");
+        } else {
+            System.out.printf("Course with code: %s already exists\n", courseCode);
+        }
+    }
+
+    private static void viewCourse() {
+        System.out.print("Enter course code:");
+        String code = scanner.nextLine();
+
+        courseService.getCourse(code).ifPresentOrElse(
+                course -> System.out.println("Course: " + course),
+                () -> System.out.println("Course not found")
+        );
+    }
+
+    private static void viewAllCourses() {
+        List<Course> courses = courseService.getAllCourses();
+
+        if (courses.isEmpty()) {
+            System.out.println("No courses found");
+        } else {
+            System.out.println("List of all available courses:");
+            courses.forEach(System.out::println);
+        }
+    }
+
+    private static void updateCourse() {
+        System.out.print("Enter course code: ");
+        String code = scanner.nextLine();
+
+        Optional<Course> existing = courseService.getCourse(code);
+
+        if (existing.isEmpty())  {
+            System.out.println("Course not found");
+        } else {
+            System.out.print("Enter new title: ");
+            String title = scanner.nextLine();
+
+            System.out.print("Enter new credit: ");
+            int credit = scanner.nextInt();
+
+            System.out.print("Enter new capacity: ");
+            int capacity = scanner.nextInt();
+
+            Course updatedCourse = Course.builder(code, title, credit)
+                    .withCapacity(capacity)
+                    .withLecturerId(existing.get().getLecturerId())
+                    .withPrerequisite(existing.get().checkPrerequisite())
+                    .build();
+
+            boolean success = courseService.updateCourse(updatedCourse);
+
+            if (success) {
+                System.out.println("Course updated successfully");
+            } else {
+                System.out.println("Failed to update course");
+            }
+        }
+    }
+
+    private static void deleteCourse() {
+        System.out.print("Enter course code: ");
+        String code = scanner.nextLine();
+
+        Optional<Course> existing = courseService.getCourse(code);
+
+        if (existing.isEmpty()) {
+            System.out.println("Course not found");
+            System.exit(0);
+        }
+
+        courseService.deleteCourse(existing.get());
+        System.out.println("Course deleted successfully");
+    }
+
+    private static void findLecturerByLecturerId() {
+        System.out.print("Enter lecturer ID: ");
+        String lecturerId = scanner.nextLine();
+
+        List<Course> courses = courseService.getCourseByLecturerId(lecturerId);
+
+        if (courses.isEmpty()) {
+            System.out.printf("No courses found for lecturer ID: %s\n", lecturerId);
+        } else {
+            System.out.printf("List of courses for lecturer ID: %s\n", lecturerId);
+            courses.forEach(System.out::println);
+        }
+
+
+    }
+
+    // ========= ENROLLMENT MENU METHODS ===========
+    private static void showEnrollmentMenu() {
+        // Implementation for Student Menu
+        while (true) {
+            System.out.println("\n--- STUDENT MENU ---");
+            System.out.println("1. Register Student");
+            System.out.println("2. View Student");
+            System.out.println("3. View All Students");
+            System.out.println("4. Update Student");
+            System.out.println("5. Delete Student");
+            System.out.println("6. Find Student By Major");
+            System.out.println("0. Back to Main Menu");
+            System.out.print("Choose an option: ");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1 -> registerStudent();
+                case 2 -> viewStudent();
+                case 3 -> viewAllStudents();
+                case 4 -> updateStudent();
+                case 5 -> deleteStudent();
+                case 6 -> findStudentByMajor();
+                case 0 -> {return;}
+                default -> System.out.println("Invalid Option!");
+            }
+        }
     }
 }

@@ -20,11 +20,12 @@ public class CourseService {
         this.courseDao = courseDao;
     }
 
-    public void addCourse(Course course) {
+    public boolean addCourse(Course course) {
         if (courseDao.get(course.getId()).isPresent()) {
             throw new IllegalArgumentException("Course with ID: " + course.getId() + " already exists.");
         }
         courseDao.create(course);
+        return true;
     }
 
     public Optional<Course> getCourse(String courseCode) {
@@ -39,11 +40,12 @@ public class CourseService {
         return new ArrayList<>(courseDao.findByLecturerId(lecturerId));
     }
 
-    public void updateCourse(Course course) {
+    public boolean updateCourse(Course course) {
         if (courseDao.get(course.getId()).isEmpty()) {
             throw new IllegalArgumentException("Course with ID: " + course.getId() + " does not exist.");
         }
         courseDao.update(course);
+        return true;
     }
 
     public void deleteCourse(Course course) {

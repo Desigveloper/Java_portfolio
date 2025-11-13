@@ -20,12 +20,13 @@ public class LecturerService {
         this.lecturerDao = lecturerDao;
     }
 
-    public void addLecturer(Lecturer lecturer) {
+    public boolean addLecturer(Lecturer lecturer) {
         // Check if lecturer exists
         if (lecturerDao.get(lecturer.getId()).isPresent()) {
             throw new IllegalArgumentException("Lecturer with ID: " + lecturer.getId() + " already exists");
         }
         lecturerDao.create(lecturer);
+        return true;
     }
 
     public Optional<Lecturer> getLecturer(String lecturerId) {
@@ -40,14 +41,21 @@ public class LecturerService {
         return new ArrayList<>(lecturerDao.findByDepartment(department));
     }
 
-    public void updateLecturer(Lecturer lecturer) {
+    public boolean updateLecturer(Lecturer lecturer) {
         if (lecturerDao.get(lecturer.getId()).isEmpty()) {
             throw new IllegalArgumentException("Lecturer with ID: " + lecturer.getId() + " does not exist.");
         }
         lecturerDao.update(lecturer);
+        return true;
     }
 
-    public void deleteLecturer(Lecturer lecturer) {
-        lecturerDao.delete(lecturer);
+    public boolean deleteLecturer(String lecturerId) {
+        Optional<Lecturer> existing = getLecturer(lecturerId);
+        if (existing.isEmpty()) {
+            throw new IllegalArgumentException("Lecturer with ID: " + lecturerId + " does not exist.");
+        }
+
+        lecturerDao.delete(existing.get());
+        return true;
     }
 }
