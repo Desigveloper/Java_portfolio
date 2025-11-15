@@ -538,6 +538,8 @@ public class StudentManagementSystemInvoker {
         Enrollment enrollment = Enrollment.builder(id, studentId, courseId).withSemester(semester)
                 .withEnrollmentDate(date).withStatus(status).build();
 
+        enrollment.setGrade(grade);
+
         boolean success = enrollmentService.addEnrollment(enrollment);
 
         if (success) {
@@ -582,9 +584,85 @@ public class StudentManagementSystemInvoker {
             boolean success = update.setGrade(grade);
 
             if (success) {
-                System.out.printf("Enrollment ID: " + update.getId() + " updated successfully!");
+                System.out.printf("Enrollment ID: %s updated successfully!\n", update.getId());
             }
 
         }
+    }
+
+    private static void dropEnrollment() {
+        System.out.print("Enter enrollment ID: ");
+        String id = scanner.nextLine();
+
+        boolean success = enrollmentService.dropEnrollment(id);
+
+        if (success) {
+            System.out.printf("Enrollment ID: %s dropped successfully.", id);
+        } else {
+            System.out.print("Error: Enrollment couldn't be dropped");
+        }
+    }
+
+    private static void findEnrollmentByStudent() {
+        System.out.print("Enter student ID: ");
+        String studentId = scanner.nextLine();
+
+        // Verify if student exist
+        if (studentService.getStudent(studentId).isEmpty()) {
+            System.out.printf("Student ID: %s not found!\n", studentId);
+            System.exit(0);
+        }
+
+        List<Enrollment> enrollments = enrollmentService.getAllEnrollments();
+
+        if (enrollments.isEmpty()) {
+            System.out.printf("No enrollment found for student ID: %s!\n", studentId);
+        } else {
+            System.out.printf("Enrollments for student ID: %s\n", studentId);
+            enrollments.forEach(System.out::println);
+        }
+    }
+
+    private static void findEnrollmentByCourse() {
+        System.out.print("Enter course ID: ");
+        String courseId = scanner.nextLine();
+
+        List<Enrollment> enrollments = enrollmentService.getEnrollmentByCourseId(courseId);
+
+        if (enrollments.isEmpty()) {
+            System.out.printf("No enrollment found for course ID: %s!\n", courseId);
+        } else {
+            System.out.printf("Enrollments for course ID: %s\n", courseId);
+            enrollments.forEach(System.out::println);
+        }
+    }
+
+    private static void findEnrollmentBySemester() {
+        System.out.print("Enter semester ie. 1 or 2: ");
+        int semester = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        List<Enrollment> enrollments = enrollmentService.getEnrollmentBySemester(semester);
+        if(enrollments.isEmpty()) {
+            System.out.printf("No enrollments for semester: %d\n", semester);
+        } else {
+            System.out.printf("Enrollments for semester %d:\n", semester);
+            enrollments.forEach(System.out::println);
+        }
+    }
+
+    private static void findEnrollmentByStudentAndCourse() {
+        System.out.print("Enter student ID: ");
+        String studentId = scanner.nextLine();
+
+        System.out.print("Enter course ID: ");
+        String courseId = scanner.nextLine();
+
+        Optional<Enrollment> existing = enrollmentService.getEnrollmentByStudentAndCourse(studentId, courseId);
+
+        existing.ifPresentOrElse(
+                enrollment -> System.out.println("Enrollment: " + enrollment),
+                () -> System.out.printf("No enrollment found with Student ID: %s and Course ID: %s\n", studentId, courseId)
+        );
     }
 }
