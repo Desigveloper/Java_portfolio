@@ -27,8 +27,9 @@ public class Enrollment {
         return this.grade;
     }
 
-    public void setGrade(String grade) {
+    public boolean setGrade(String grade) {
         this.grade = grade;
+        return true;
     }
 
     public Integer getSemester() {

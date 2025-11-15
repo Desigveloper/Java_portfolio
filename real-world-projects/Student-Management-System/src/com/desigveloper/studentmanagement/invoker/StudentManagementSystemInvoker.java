@@ -1,6 +1,7 @@
 package com.desigveloper.studentmanagement.invoker;
 
 import com.desigveloper.studentmanagement.model.Course;
+import com.desigveloper.studentmanagement.model.Enrollment;
 import com.desigveloper.studentmanagement.model.Lecturer;
 import com.desigveloper.studentmanagement.model.Student;
 import com.desigveloper.studentmanagement.services.*;
@@ -11,12 +12,12 @@ import java.util.Optional;
 import java.util.Scanner;
 
 public class StudentManagementSystemInvoker {
-    private static Scanner scanner = new Scanner(System.in);
-    private static StudentService studentService = new StudentService();
-    private static LecturerService lecturerService = new LecturerService();
-    private static CourseService courseService = new CourseService();
-    private static EnrollmentService enrollmentService = new EnrollmentService();
-    private static SampleDataService sampleDataService = new SampleDataService();
+    private static final Scanner scanner = new Scanner(System.in);
+    private static final StudentService studentService = new StudentService();
+    private static final LecturerService lecturerService = new LecturerService();
+    private static final CourseService courseService = new CourseService();
+    private static final EnrollmentService enrollmentService = new EnrollmentService();
+    private static final SampleDataService sampleDataService = new SampleDataService();
 
     public static void main(String[] args) {
         System.out.println("=== Student System Management System ===");
@@ -145,7 +146,6 @@ public class StudentManagementSystemInvoker {
         Optional<Student> existing = studentService.getStudent(id);
         if (existing.isEmpty()) {
             System.out.println("Student not found");
-            return;
         } else {
             System.out.print("Enter new name: ");
             String name = scanner.nextLine();
@@ -473,28 +473,118 @@ public class StudentManagementSystemInvoker {
     private static void showEnrollmentMenu() {
         // Implementation for Student Menu
         while (true) {
-            System.out.println("\n--- STUDENT MENU ---");
-            System.out.println("1. Register Student");
-            System.out.println("2. View Student");
-            System.out.println("3. View All Students");
-            System.out.println("4. Update Student");
-            System.out.println("5. Delete Student");
-            System.out.println("6. Find Student By Major");
+            System.out.println("\n--- ENROLLMENT MANAGEMENT ---");
+            System.out.println("1. Enroll Student in Course");
+            System.out.println("2. View Enrollment");
+            System.out.println("3. View All Enrollments");
+            System.out.println("4. Update Enrollment Grade");
+            System.out.println("5. Drop Enrollment");
+            System.out.println("6. View Enrollment By Student");
+            System.out.println("7. View Enrollment By Course");
+            System.out.println("8. View Enrollment By Semester");
+            System.out.println("9. View Enrollment By Student and Course");
             System.out.println("0. Back to Main Menu");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1 -> registerStudent();
-                case 2 -> viewStudent();
-                case 3 -> viewAllStudents();
-                case 4 -> updateStudent();
-                case 5 -> deleteStudent();
-                case 6 -> findStudentByMajor();
+                case 1 -> enrollStudent();
+                case 2 -> viewEnrollment();
+                case 3 -> viewAllEnrollments();
+                case 4 -> updateEnrollmentGrade();
+                case 5 -> dropEnrollment();
+                case 6 -> findEnrollmentByStudent();
+                case 7 -> findEnrollmentByCourse();
+                case 8 -> findEnrollmentBySemester();
+                case 9 -> findEnrollmentByStudentAndCourse();
                 case 0 -> {return;}
                 default -> System.out.println("Invalid Option!");
             }
+        }
+    }
+
+    private static void enrollStudent() {
+        System.out.print("Enter enrollment ID: ");
+        String id = scanner.nextLine();
+
+        System.out.print("Enter student ID: ");
+        String studentId = scanner.nextLine();
+
+        System.out.print("Enter course ID: ");
+        String courseId = scanner.nextLine();
+
+        System.out.print("Enter student grade: ");
+        String grade = scanner.nextLine();
+
+        System.out.print("Enter current semester: ");
+        int semester = scanner.nextInt();
+
+        // Verify if student exists
+        if (studentService.getStudent(studentId).isEmpty()) {
+            System.out.printf("Error: Student ID: %s not found!.\n", studentId);
+            System.exit(0);
+        }
+
+        // Verify if course exists
+        if (courseService.getCourse(courseId).isEmpty()) {
+            System.out.printf("Error: Course ID %s not found!.\n", courseId);
+            System.exit(0);
+        }
+
+        String status = "Active";
+        String date = LocalDate.now().toString();
+
+        Enrollment enrollment = Enrollment.builder(id, studentId, courseId).withSemester(semester)
+                .withEnrollmentDate(date).withStatus(status).build();
+
+        boolean success = enrollmentService.addEnrollment(enrollment);
+
+        if (success) {
+            System.out.printf("Student with ID: %S enrolled successfully\n", studentId);
+        }
+    }
+
+    private static void viewEnrollment() {
+        System.out.print("Enter enrollment ID: ");
+        String id = scanner.nextLine();
+
+        enrollmentService.getEnrollment(id).ifPresentOrElse(
+                enrollment -> System.out.println("Enrollment: " + enrollment),
+                () -> System.out.printf("Enrollment ID: %s not found!\n", id )
+        );
+    }
+
+    private static void viewAllEnrollments() {
+        List<Enrollment> enrollments = enrollmentService.getAllEnrollments();
+
+        if (enrollments.isEmpty()) {
+            System.out.println("No enrollment found!");
+        } else {
+            enrollments.forEach(System.out::println);
+        }
+    }
+
+    private static void updateEnrollmentGrade() {
+        System.out.print("Enter enrollment ID: ");
+        String id =scanner.nextLine();
+
+        Optional<Enrollment> existing = enrollmentService.getEnrollment(id);
+
+        if (existing.isEmpty()) {
+            System.out.printf("Enrollment ID: %s\n", id);
+        } else {
+            System.out.print("Enter new grade: ");
+            String grade = scanner.nextLine();
+
+            Enrollment update = existing.get();
+
+            boolean success = update.setGrade(grade);
+
+            if (success) {
+                System.out.printf("Enrollment ID: " + update.getId() + " updated successfully!");
+            }
+
         }
     }
 }

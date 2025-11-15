@@ -21,7 +21,7 @@ public class EnrollmentService {
         this.enrollmentDao = enrollmentDao;
     }
 
-    public void addEnrollment(Enrollment enrollment) {
+    public boolean addEnrollment(Enrollment enrollment) {
         // Check if enrollment exists
         if (enrollmentDao.get(enrollment.getId()).isPresent()) {
             throw new IllegalArgumentException("Enrollment with ID: " + enrollment.getId() + " already exists.");
@@ -37,6 +37,7 @@ public class EnrollmentService {
             throw new IllegalArgumentException("Student is already for this course in this semester");
         }
         enrollmentDao.create(enrollment);
+        return true;
     }
 
     public Optional<Enrollment> getEnrollment(String enrollmentId) {
