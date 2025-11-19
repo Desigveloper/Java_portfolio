@@ -29,15 +29,47 @@ public class CalculatorService implements Calculator {
     }
 
     private void showMenu() {
-            System.out.println("\n--- MAIN MENU ---");
-            System.out.println("=== Enhanced Command Line Calculator ===");
+            System.out.println("\n=== Enhanced Command Line Calculator (Enter '=' to show result)===");
             System.out.println("1. Perform operation");
             System.out.println("0. Close program.");
             System.out.print("Choose an option: ");
 
     }
 
-    private static double getNumber() {
+    // Operation dispatcher
+    private void performOperation() {
+        double currentValue = 0;
+        boolean firstInputNotANumber = true;
+
+        while (true) {
+            // Get first input
+            if (firstInputNotANumber) {
+                System.out.print("Enter first number: ");
+                currentValue = getValidNumber();
+                firstInputNotANumber = false;
+            }
+
+            System.out.print("Enter operator (+, -, *, /, %) or = to calculate: ");
+            String operator = getOperator();
+
+            if (operator.equals("=")) break;
+
+            System.out.print("Enter next number: ");
+            double nextNumber = getValidNumber();
+
+           try {
+                currentValue = performCalculation(currentValue, nextNumber, operator);
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+           }
+
+        }
+
+        System.out.printf("Final result: %.2f", currentValue);
+    }
+
+    // Validate input
+    private static double getValidNumber() {
         while (true) {
             if (CalculatorService.scanner.hasNextDouble()) {
                 return CalculatorService.scanner.nextDouble();
@@ -48,12 +80,13 @@ public class CalculatorService implements Calculator {
         }
     }
 
+    // Validate operator
     private static String getOperator() {
         while (true) {
             String input = CalculatorService.scanner.next().trim();
 
             if (input.equals("+") || input.equals("-") || input.equals("/")
-                || input.equals("*") || input.equals("%") || input.equals("=")) {
+                    || input.equals("*") || input.equals("%") || input.equals("=")) {
                 return input;
             } else {
                 System.out.print("Invalid Operator: Enter +, -, *, /, % or " +
@@ -63,46 +96,20 @@ public class CalculatorService implements Calculator {
         }
     }
 
-    private void performOperation() {
-        double currentValue = 0;
-        boolean firstInputNotANumber = true;
-
-        while (firstInputNotANumber) {
-            System.out.print("Enter first number: ");
-            currentValue = getNumber();
-            firstInputNotANumber = false;
-        }
-
-
-        while (true) {
-            System.out.print("Enter operator (+, -, *, /, %) or = to calculate: ");
-            String operator = getOperator();
-
-            if (operator.equals("=")) break;
-
-            System.out.print("Enter next number: ");
-            var nextNumber = getNumber();
-
-           try {
-                currentValue = switch (operator) {
-                    case "+" -> add(currentValue, nextNumber);
-                    case "-" -> subtract(currentValue, nextNumber);
-                    case "*" -> multiply(currentValue, nextNumber);
-                    case "/" -> divide(currentValue, nextNumber);
-                    case "%" -> modulus(currentValue, nextNumber);
-                    default -> currentValue;
-                };
-            } catch (Exception e) {
-                System.out.println("Error: " + e.getMessage());
-           }
-
-        }
-
-        System.out.println(currentValue);
+    // Calculation dispatcher
+    private double performCalculation(double currentValue, double nextNumber, String op) {
+        return switch (op) {
+            case "+" -> add(currentValue, nextNumber);
+            case "-" -> subtract(currentValue, nextNumber);
+            case "*" -> multiply(currentValue, nextNumber);
+            case "/" -> divide(currentValue, nextNumber);
+            case "%" -> modulus(currentValue, nextNumber);
+            default -> currentValue;
+        };
     }
 
-//    Operation methods implementations
 
+//    Operation methods implementations
     @Override
     public double add(double a, double b) {
         return a + b;
