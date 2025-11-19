@@ -5,7 +5,7 @@ import com.desigveloper.model.Calculator;
 import java.util.Scanner;
 
 public class CalculatorService implements Calculator {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
 
     public void invokeCalculator() {
@@ -17,9 +17,8 @@ public class CalculatorService implements Calculator {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 0 -> {
+                case 0 ->
                     System.exit(0);
-                }
                 case 1 -> {
                     running = false;
                     performOperation();
@@ -38,20 +37,20 @@ public class CalculatorService implements Calculator {
 
     }
 
-    private static double getNumber(Scanner scanner) {
+    private static double getNumber() {
         while (true) {
-            if (scanner.hasNextDouble()) {
-                return scanner.nextDouble();
+            if (CalculatorService.scanner.hasNextDouble()) {
+                return CalculatorService.scanner.nextDouble();
             } else {
                 System.out.println("Invalid number. Enter a valid number");
-                scanner.next(); // Clear invalid token
+                CalculatorService.scanner.next(); // Clear invalid token
             }
         }
     }
 
-    private static String getOperator(Scanner scanner) {
+    private static String getOperator() {
         while (true) {
-            String input = scanner.next().trim();
+            String input = CalculatorService.scanner.next().trim();
 
             if (input.equals("+") || input.equals("-") || input.equals("/")
                 || input.equals("*") || input.equals("%") || input.equals("=")) {
@@ -59,38 +58,50 @@ public class CalculatorService implements Calculator {
             } else {
                 System.out.print("Invalid Operator: Enter +, -, *, /, % or " +
                         " = to complete");
-                scanner.next(); // Clear invalid operator
+                CalculatorService.scanner.next(); // Clear invalid operator
             }
         }
     }
 
     private void performOperation() {
-        System.out.print("Enter first number: ");
-        var finalResult = getNumber(scanner);
+        double currentValue = 0;
+        boolean firstInputNotANumber = true;
+
+        while (firstInputNotANumber) {
+            System.out.print("Enter first number: ");
+            currentValue = getNumber();
+            firstInputNotANumber = false;
+        }
 
 
         while (true) {
             System.out.print("Enter operator (+, -, *, /, %) or = to calculate: ");
-            String operator = getOperator(scanner);
+            String operator = getOperator();
 
             if (operator.equals("=")) break;
 
             System.out.print("Enter next number: ");
-            var nextNumber = getNumber(scanner);
+            var nextNumber = getNumber();
 
-            finalResult =  switch (operator) {
-                case "+" -> add(finalResult, nextNumber);
-                case "-" -> subtract(finalResult, nextNumber);
-                case "*" -> multiply(finalResult, nextNumber);
-                case "/" -> divide(finalResult, nextNumber);
-                case "%" -> modulus(finalResult, nextNumber);
-                default -> finalResult;
-            };
+           try {
+                currentValue = switch (operator) {
+                    case "+" -> add(currentValue, nextNumber);
+                    case "-" -> subtract(currentValue, nextNumber);
+                    case "*" -> multiply(currentValue, nextNumber);
+                    case "/" -> divide(currentValue, nextNumber);
+                    case "%" -> modulus(currentValue, nextNumber);
+                    default -> currentValue;
+                };
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage());
+           }
 
         }
 
-        System.out.println(finalResult);
+        System.out.println(currentValue);
     }
+
+//    Operation methods implementations
 
     @Override
     public double add(double a, double b) {

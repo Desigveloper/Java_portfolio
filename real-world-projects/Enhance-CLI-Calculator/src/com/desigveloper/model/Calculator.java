@@ -2,7 +2,6 @@ package com.desigveloper.model;
 
 public interface Calculator {
     // Operation methods
-
     double add(double a, double b);
 
     double subtract(double a, double b);
