@@ -104,7 +104,7 @@ public class CalculatorService implements Calculator {
             case "*" -> multiply(currentValue, nextNumber);
             case "/" -> divide(currentValue, nextNumber);
             case "%" -> modulus(currentValue, nextNumber);
-            default -> currentValue;
+            default -> throw new IllegalArgumentException("Invalid operation: " + " " + op + " ");
         };
     }
 
