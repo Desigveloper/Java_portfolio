@@ -109,7 +109,7 @@ public class CalculatorService implements Calculator {
     }
 
 
-//    Operation methods implementations
+//    Modular Operation methods implementations
     @Override
     public double add(double a, double b) {
         return a + b;
