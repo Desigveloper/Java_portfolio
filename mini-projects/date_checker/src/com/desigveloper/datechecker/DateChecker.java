@@ -1,4 +1,5 @@
-package com.desigveloper.datechecker;
+package com.desigveloper.dateChecker;
+
 
 import java.time.LocalDate;
 import java.util.Scanner;

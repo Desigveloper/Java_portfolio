@@ -13,7 +13,7 @@ public class App {
         int totalMonths = 12;
 
         List<List<String>> calendars = new ArrayList<>();
-        var designer = new CalenderDesigner();
+        var designer = new Calender();
 
         // Generate calendars for each month
         for (int m = 1; m <= totalMonths; m++) {

@@ -1,31 +1,22 @@
-import java.text.NumberFormat;
+
 import java.util.Random;
+import java.util.Scanner;
 import java.util.random.RandomGenerator;
 
 public class Test {
+    static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-      TestConstructor cons = new TestConstructor();
-      String name = cons.getName();
-      int age = cons.getAge();
-      boolean height = cons.getIsTall();
+      String str, strReversed = "";
 
-      String info = String.format("Name: %s\nAge: %d\nIs tall: %b",
-          name, age, height);
-      System.out.println(info);
-      
-      for (int i = 0; i < 10; i++) {
-        System.out.println("Random number: " + NumberFormat.getNumberInstance()
-          .format(cons.generateRandom()));
+      System.out.print("Enter any given string: ");
+      str = sc.nextLine();
+
+      for(int i = str.length() - 1; i >= 0; i--) {
+        strReversed += str.charAt(i);
       }
 
-      var p = new Points(3, 4);
-      System.out.println(p.x());
-      System.out.println(p.sumArgs());
-
-      var in = new Points.InnerRecord(12, 7);
-      System.out.println(in.multiplyArg());
-
+      System.out.println("Reversed String: " + strReversed);
     }
 
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/Enhance-CLI-Calculator/Enhance-CLI-Calculator.iml" filepath="$PROJECT_DIR$/real-world-projects/Enhance-CLI-Calculator/Enhance-CLI-Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/Library-Book-Tracker/Library-Book-Tracker.iml" filepath="$PROJECT_DIR$/real-world-projects/Library-Book-Tracker/Library-Book-Tracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/Order-Processing-System/Order-Processing-System.iml" filepath="$PROJECT_DIR$/real-world-projects/Order-Processing-System/Order-Processing-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/Student-Management-System/Student-Management-System.iml" filepath="$PROJECT_DIR$/real-world-projects/Student-Management-System/Student-Management-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/bank-account/bank-account.iml" filepath="$PROJECT_DIR$/mini-projects/bank-account/bank-account.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/projects/bank_system/bank_system.iml" filepath="$PROJECT_DIR$/real-world-projects/projects/bank_system/bank_system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/projects/beatBox/beatBox.iml" filepath="$PROJECT_DIR$/real-world-projects/projects/beatBox/beatBox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/projects/calculator_app/calculator_app.iml" filepath="$PROJECT_DIR$/real-world-projects/projects/calculator_app/calculator_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/calender_designer/calender_designer.iml" filepath="$PROJECT_DIR$/mini-projects/calender_designer/calender_designer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/character_counter/character_counter.iml" filepath="$PROJECT_DIR$/mini-projects/character_counter/character_counter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/projects/chat_client/chat_client.iml" filepath="$PROJECT_DIR$/real-world-projects/projects/chat_client/chat_client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/compound_interest/compound_interest.iml" filepath="$PROJECT_DIR$/mini-projects/compound_interest/compound_interest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/customer-management/customer-management.iml" filepath="$PROJECT_DIR$/mini-projects/customer-management/customer-management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/date_checker/date_checker.iml" filepath="$PROJECT_DIR$/mini-projects/date_checker/date_checker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/projects/e_flashcards/e_flashcards.iml" filepath="$PROJECT_DIR$/real-world-projects/projects/e_flashcards/e_flashcards.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects/projects/email_management/email_management.iml" filepath="$PROJECT_DIR$/real-world-projects/projects/email_management/email_management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/employee_payroll/employee_payroll.iml" filepath="$PROJECT_DIR$/mini-projects/employee_payroll/employee_payroll.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/factorial/factorial.iml" filepath="$PROJECT_DIR$/mini-projects/factorial/factorial.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/investment-tracker/investment-tracker.iml" filepath="$PROJECT_DIR$/mini-projects/investment-tracker/investment-tracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-projects.iml" filepath="$PROJECT_DIR$/java-projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/madlib-game/madlib-game.iml" filepath="$PROJECT_DIR$/mini-projects/madlib-game/madlib-game.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/mini-projects.iml" filepath="$PROJECT_DIR$/mini-projects/mini-projects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/mini_chatbot/mini_chatbot.iml" filepath="$PROJECT_DIR$/mini-projects/mini_chatbot/mini_chatbot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/pirate_puzzle/pirate_puzzle.iml" filepath="$PROJECT_DIR$/mini-projects/pirate_puzzle/pirate_puzzle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/quote-printer/quote-printer.iml" filepath="$PROJECT_DIR$/mini-projects/quote-printer/quote-printer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/retirement-app/retirement-app.iml" filepath="$PROJECT_DIR$/mini-projects/retirement-app/retirement-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/tic-tac-toe/tic-tac-toe.iml" filepath="$PROJECT_DIR$/mini-projects/tic-tac-toe/tic-tac-toe.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mini-projects/tip-calculator/tip-calculator.iml" filepath="$PROJECT_DIR$/mini-projects/tip-calculator/tip-calculator.iml" />
+    </modules>
+  </component>
+</project>

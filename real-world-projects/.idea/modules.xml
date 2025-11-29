@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Enhance-CLI-Calculator/Enhance-CLI-Calculator.iml" filepath="$PROJECT_DIR$/Enhance-CLI-Calculator/Enhance-CLI-Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Library-Book-Tracker/Library-Book-Tracker.iml" filepath="$PROJECT_DIR$/Library-Book-Tracker/Library-Book-Tracker.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Order-Processing-System/Order-Processing-System.iml" filepath="$PROJECT_DIR$/Order-Processing-System/Order-Processing-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Student-Management-System/Student-Management-System.iml" filepath="$PROJECT_DIR$/Student-Management-System/Student-Management-System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/bank_system/bank_system.iml" filepath="$PROJECT_DIR$/projects/bank_system/bank_system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/beatBox/beatBox.iml" filepath="$PROJECT_DIR$/projects/beatBox/beatBox.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/calculator_app/calculator_app.iml" filepath="$PROJECT_DIR$/projects/calculator_app/calculator_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/chat_client/chat_client.iml" filepath="$PROJECT_DIR$/projects/chat_client/chat_client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/e_flashcards/e_flashcards.iml" filepath="$PROJECT_DIR$/projects/e_flashcards/e_flashcards.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projects/email_management/email_management.iml" filepath="$PROJECT_DIR$/projects/email_management/email_management.iml" />
+      <module fileurl="file://$PROJECT_DIR$/real-world-projects.iml" filepath="$PROJECT_DIR$/real-world-projects.iml" />
+    </modules>
+  </component>
+</project>
