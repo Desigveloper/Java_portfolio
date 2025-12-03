@@ -7,17 +7,27 @@ public class Test {
     static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-      String str, strReversed = "";
+      double num1, num2;
+      String str;
 
-      System.out.print("Enter any given string: ");
-      str = sc.nextLine();
+      System.out.print("Enter any given two numbers separated by space: ");
+      num1 = Double.parseDouble(sc.next());
+      num2 = Double.parseDouble(sc.nextLine());
+    
 
-      for(int i = str.length() - 1; i >= 0; i--) {
-        strReversed += str.charAt(i);
+      // System.out.print("Enter any given string: ");
+      // str = sc.nextLine();
+      
+
+
+      if (num1 > num2) {
+        double temp = num1;
+        num1 = num2;
+        num2 = temp;
       }
-
-      System.out.println("Reversed String: " + strReversed);
-    }
+        
+        System.out.println(num1 + " " + num2);
+      }
 
 }
 
