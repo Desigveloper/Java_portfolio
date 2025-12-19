@@ -7,28 +7,21 @@ public class Test {
     static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-      double num1, num2;
+      double num;
       String str;
 
-      System.out.print("Enter any given two numbers separated by space: ");
-      num1 = Double.parseDouble(sc.next());
-      num2 = Double.parseDouble(sc.nextLine());
-    
+      System.out.print("Enter any given integer: ");
+      num = Double.parseDouble(sc.nextLine());
 
-      // System.out.print("Enter any given string: ");
-      // str = sc.nextLine();
-      
-
-
-      if (num1 > num2) {
-        double temp = num1;
-        num1 = num2;
-        num2 = temp;
+      if(num < 0 || num != (int) num) {
+        System.out.println("Invalid number");
+      } else {
+        if (num % 2 == 0) {
+          System.out.println("Even");
+        } else {
+          System.out.println("Odd");
+        }
       }
-        
-        System.out.println(num1 + " " + num2);
-      }
-
 }
 
 
@@ -67,4 +60,5 @@ record Points(double x, double y) {
   public double sumArgs() {
     return x + y;
   }
+}
 }
